@@ -171,7 +171,7 @@ const cartsDelete = function(key) {
 // };
 const cartsUpdate = function(index, key) {
   const url = 'https://red-javascript-yurim-default-rtdb.firebaseio.com/carts/' + key + '.json';
-  const expire = document.getElementsByName('carts-exprie')[index].value;
+  const expire = document.getElementsByName('carts-expire')[index].value;
   const cart = {
     expire: expire
   };
