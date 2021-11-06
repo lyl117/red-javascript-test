@@ -134,13 +134,13 @@ const cartsRead = function() {
     tagDivParent.innerHTML = '';
     const tagDivChild = document.getElementById('tag-tr-child');
     let index = 0;
-    for (let index in carts) {
+    for (let key in carts) {
       const newDivChild = tagDivChild.cloneNode(true);
       tagDivParent.appendChild(newDivChild);
       const cartsNameObject = document.getElementsByName('carts-name')[index];
       cartsNameObject.innerHTML = carts[key].name;
-      const cartsAgeObject = document.getElementsByName('carts-enter')[index];
-      cartsNameObject.innerHTML = carts[key].enter;
+      const cartsEnterObject = document.getElementsByName('carts-enter')[index];
+      cartsEnterObject.innerHTML = carts[key].enter;
       const cartsExpireObject = document.getElementsByName('carts-expire')[index];
       cartsExpireObject.value = carts[key].expire;
       cartsExpireObject.key=key;
@@ -173,7 +173,7 @@ const cartsUpdate = function(index, key) {
   const url = 'https://red-javascript-yurim-default-rtdb.firebaseio.com/carts/' + key + '.json';
   const expire = document.getElementsByName('carts-exprie')[index].value;
   const cart = {
-    expire= expire
+    expire: expire
   };
   // ajax('PATCH', url, JSON.stringify(cart), cartsRead);
   axios.patch(url, cart).then(cartsRead);
