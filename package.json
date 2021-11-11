@@ -1,0 +1,21 @@
+{
+  "name": "red-test",
+  "version": "1.0.0",
+  "main": "homework11.07.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lyl117/red-javascript-test.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lyl117/red-javascript-test/issues"
+  },
+  "homepage": "https://github.com/lyl117/red-javascript-test#readme",
+  "description": ""
+}
