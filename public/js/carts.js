@@ -76,8 +76,8 @@ const itemsChange = function(event) {
     console.log(event.terget.key)
     console.log(carts)
     console.log(carts[event.target.key])
-    console.log(evnt)
-    axios.post('https://red-javascript-yurim-default-rtdb.firebaseio.com/items.json', carts[event.target.key]);)
+    console.log(event)
+    axios.post('https://red-javascript-yurim-default-rtdb.firebaseio.com/items.json', carts[event.target.key]);
   } else {
     console.log('TODO: item 삭제')
   }
