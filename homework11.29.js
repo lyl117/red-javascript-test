@@ -13,7 +13,7 @@ name.value =q;
 name.focus();
 // 검색창에 검색선이 깜박이며 생긴다.
 
-onst itemsRead = function(){
+const itemsRead = function(){
   if (items[key].name.indexOf(q) < 0) continue;
   // constinue는 맞지 않는 상황이라면 다음번으로 넘긴다라는 뜻. 
   // 아무것도 안들어오면, 배값이면 0, 귤이 들어오면 -1(배가 아니어서)
