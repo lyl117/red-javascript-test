@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> // 설정 부분 
+  <meta charset="UTF-8"> // 모든 언어를 포함함. 글자가 깨지지 않고, 요즘 들어 많이 사용됨.
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" // 모바일일경우 크기 조절용 content="width=device-width, initial-scale=1.0">
+  <title>Document</title> // 사이트의 제목이 된다.
+  <script> // html 구조 안에 script가 들어갈 수 있다.
+  console.time('index1.js');
+  console.time('index2.js');
+  console.time('index3.js');
+  console.time('html bottom');
+  </script>
+  <script defer src="./index.js">// defer 항상 모든 돔이 끝난 뒤에 이어서 호출.</script>
+  <script src="./index2.js"></script>
+  <script src="./index3.js">// 스크립트 파일을 불러올 수 있다.
+  </script> 
+</head>
+<body>
+  HTML index.html
+  // 문서 내용이 들어감.
+</body>
+</html>
+<script>
+  // debugger;
+  console.timeEnd('html bottom');
+  // console.time, console.timeEnd
+  // = 웹로딩 속도나 처리속도가 너무 느리다보면 디버깅을 해보거나 원인 파악을 할 텐데
+  // 이 때 console.time이나, console.timeEnd를 사용하면 쉽게 얼마나 걸리는지 알 수 있다. 
+  // 여기서 특징은 시작시 console.time, 종료시점시 consle.timeEnd를 사용해주어야 한다. 
+  // network에 들어가서 걸리는 시간 및 순서대로 돌아가는지 등 보면서 이해하는 것이 좋다.
+  // (빨강색 줄은 파일 처리하고 끝나는 시간, 파랑색줄은 html까지 완료된 시간)
+
+  // 싱글 쓰레드(single thread)= 동기(sync), 멀티 쓰레드(multi thread)= 비동기(async),멀티태스킹 
+// 동기 = 동기는 보장이 되서 끝날 때까지 기다린다. 순차적으로 1->2->3으로 진행됨
+// 비동기 = 기다리지 않는다. 동시에 3개의 작업이 이루어진다. 겹쳐서 부른다.
+// async은 사용하지 않는다. 왜?= 브라우저가 판단한 순서대로 출력하고 제일 빨리 들어온 순서대로 보여지기 때문에
+
+ //** 중요 html 기본 구조 만들기 
+// ! 키 입력후 탭키 누르기 -> 자동적으로 html 필요한 구조가 뜸.
+</script>
