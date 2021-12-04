@@ -50,6 +50,22 @@ const cartsRead = function() {
     }
     console.log('Readed', carts);
   });
+    const promises = [];
+    promises[0] = new Promise(function(resolve, reject) {
+      axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/carts.json').then(function(response) {
+        resolve(response.data);
+      })
+    });
+    promises[1] = new Promise(function(resolve, reject) {
+      axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/items.json').then(function(response) {
+        resolve(response.data);
+      })
+    });
+    Promise.all(promises).then(function(result) {
+      console.log(result);
+    }).catch(function(error) {
+      console.error(error);
+    });
 };
 
 
