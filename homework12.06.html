@@ -1,0 +1,21 @@
+
+<div>
+  <form method="get" onsubmit="alert(this['template'].value); return false;">
+    <input type="text" name="template" value="Ajax done" placeholder="Name">
+    <input type="submit" value="Alert">
+  </form>
+</div>
+
+-> 버튼을 누르면, 파일과 통신하여 불러오고, 문자열로서 돌려준다.서버에서 문자로 돌려준다.
+- 버튼을 누르면 위 html파일을 뜨게 해준다.
+- 통신을 하여 주고 받는 파일이다.
+- 문자로 해도 태그로 인식한다.
+
+<body>
+  <div><button onclick="ajaxTest()">Ajax run</button></div>
+  <div id="tag-div"></div>
+ - id="tag-div가 전에 배웠던 부모를 말한다.
+ - 위 html부분이 div안에 들어간다. 
+ - true는 복사해서 넣는 것이고, 그 자체를 서버에서 가져오는 것. 태그 div안에 넣었다.
+</body>
+
