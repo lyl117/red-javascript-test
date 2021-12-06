@@ -33,13 +33,13 @@ const promiseAll = Promise.all([promise1, promise2]).then(function(result) {
 // 이때 넘어갔을 때 받아지면 resolve, 안되면 reject 
 
 // ### Case1
-하나의 프로미쓰라도 reject 메소드가 실행 되었다면 다른 프로미쓰를 기다리지 않고 바로 catch 메소드 실행됨
+// 하나의 프로미쓰라도 reject 메소드가 실행 되었다면 다른 프로미쓰를 기다리지 않고 바로 catch 메소드 실행됨
 
 // ### Case2
-모든 프로미쓰가 resolve 메소드를 실행 할 경우 then 메소드가 실행 됨
+// 모든 프로미쓰가 resolve 메소드를 실행 할 경우 then 메소드가 실행 됨
 
 // ### case3
-하나만 resolve 된다면 나머지 promise가 fullfilled 될때까지 기다린다.
+// 하나만 resolve 된다면 나머지 promise가 fullfilled 될때까지 기다린다.
 
 // ## Axios 대입
 
