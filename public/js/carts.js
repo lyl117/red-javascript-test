@@ -45,25 +45,30 @@ const cartsRead = function() {
       const tagDivParent = document.getElementById('tag-tbody-parent');
     tagDivParent.innerHTML = '';
     const tagDivChild = document.getElementById('tag-tr-child');
-    let index = 0;
+    
     for (let key in carts) {
+      carts[key].k = key
+    }
+    carts = _.orderBy(carts,'name', 'asc')
+    for (let index in carts){
       const newDivChild = tagDivChild.cloneNode(true);
       tagDivParent.appendChild(newDivChild);
       const cartsNameObject = document.getElementsByName('carts-name')[index];
-      cartsNameObject.innerHTML = carts[key].name;
+      cartsNameObject.innerHTML = carts[index].name;
       const cartsEnterObject = document.getElementsByName('carts-enter')[index];
-      cartsEnterObject.innerHTML = carts[key].enter;
+      cartsEnterObject.innerHTML = carts[index].enter;
       const cartsExpireObject = document.getElementsByName('carts-expire')[index];
-      cartsExpireObject.value = carts[key].expire;
-      cartsExpireObject.key=key;
+      cartsExpireObject.value = carts[index].expire;
+      cartsExpireObject.key = carts[index].k;
       cartsExpireObject.index = index;
       const cartsDeleteObject = document.getElementsByName('carts-delete')[index];
-      cartsDeleteObject.key= key;
-      cartsCheckboxObject.checked = items[key] ? true : false;
-      index++;
+      cartsDeleteObject.key = carts[index].k;
+      const cartsCheckboxObject = document.getElementsByName('carts-checkbox')[index];
+      cartsCheckboxObject.key = carts[index].k;
+      cartsCheckboxObject.checked = items[carts[index].k] ? true : false;
+      
     }
       console.log('Readed', carts);
-
     }).catch(function(error) {
       console.error(error);
     });
