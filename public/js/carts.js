@@ -27,9 +27,22 @@ const cartsCreate = function(form) {
 
 
 const cartsRead = function() {
-  axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/carts.json').then(function(response) {
-    carts = response.data;
-    const tagDivParent = document.getElementById('tag-tbody-parent');
+   const promises = [];
+    promises[0] = new Promise(function(resolve, reject) {
+      axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/carts.json').then(function(response) {
+        resolve(response.data);
+      })
+    });
+    promises[1] = new Promise(function(resolve, reject) {
+      axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/items.json').then(function(response) {
+        resolve(response.data);
+      })
+    });
+    Promise.all(promises).then(function(result) {
+      console.log(result);
+      carts = result[0];
+      const items = result[1];
+      const tagDivParent = document.getElementById('tag-tbody-parent');
     tagDivParent.innerHTML = '';
     const tagDivChild = document.getElementById('tag-tr-child');
     let index = 0;
@@ -46,23 +59,11 @@ const cartsRead = function() {
       cartsExpireObject.index = index;
       const cartsDeleteObject = document.getElementsByName('carts-delete')[index];
       cartsDeleteObject.key= key;
+      cartsCheckboxObject.checked = items[key] ? true : false;
       index++;
     }
-    console.log('Readed', carts);
-  });
-    const promises = [];
-    promises[0] = new Promise(function(resolve, reject) {
-      axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/carts.json').then(function(response) {
-        resolve(response.data);
-      })
-    });
-    promises[1] = new Promise(function(resolve, reject) {
-      axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/items.json').then(function(response) {
-        resolve(response.data);
-      })
-    });
-    Promise.all(promises).then(function(result) {
-      console.log(result);
+      console.log('Readed', carts);
+
     }).catch(function(error) {
       console.error(error);
     });
