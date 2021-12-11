@@ -66,7 +66,8 @@ const cartsRead = function() {
     for (let key in carts) {
       carts[key].k = key
     }
-    carts = _.orderBy(carts,'name', 'asc')
+    // carts = _.orderBy(carts,'name', 'asc')
+    carts = _.orderBy(carts, orderByName, orderByType)
     for (let index in carts){
       const newDivChild = tagDivChild.cloneNode(true);
       tagDivParent.appendChild(newDivChild);
