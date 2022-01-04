@@ -1,17 +1,13 @@
 let items;
 
 const queryString = new URLSearchParams(window.location.search);
+const orderByName = queryString.get('orderByName')||'name';
+const orderByType = queryString.get('orderByType')||'desc';
 const q = queryString.get('q')|| '';
 const name = document.getElementsByName('q')[0];
 name.value =q;
 name.focus();
-
-// // const inputTextObjects = document.getElementsByName('input-text');
-// // const inputTextObject = inputTextObjects[0];
-// const inputTextObject = document.getElementsByName('input-text')[0]; 
-// inputTextObject.value = nameText;
-// inputTextObject.focus();
-// inputTextObject.blur();
+document.getElementById(orderByName + '-' + orderByType).classList.add('active');
 
 const itemsCreate = function(form) {
   const itemNameObject = form['item-name'];
@@ -31,38 +27,42 @@ const itemsRead = function() {
     items = response.data;
     const tagDivParent = document.getElementById('tag-tbody-parent');
     tagDivParent.innerHTML = '';
-    const tagDivChild = document.getElementById('tag-tr-child');
-    let index = 0;
+    const tagTrChild = document.getElementById('tag-tr-child');
     for (let key in items) {
+      item[key].k =key
+    }
+    let _items = _.orderBy(items, orderByName, orderByType)
+    let index = 0;
+    for(let i in _items) {
       if(items[key].name.indexOf(q)< 0) continue;
       const newDivChild = tagTrChild.cloneNode(true);
       tagTbodyParent.appendChild(newDivChild);
       const itemsNameObject = document.getElementsByName('items-name')[index];
-      itemsNameObject.innerHTML = items[key].name;
+      itemsNameObject.innerHTML = _items[i].name;
       const itemsEnterObject = document.getElementsByName('items-enter')[index];
-      itemsEnterObject.innerHTML = items[key].enter;
+      itemsEnterObject.innerHTML = items[i].enter;
       const itemsExpireObject = document.getElementsByName('items-expire')[index];
-      itemsExpireObject.innerHTML = items[key].expire;
+      itemsExpireObject.innerHTML = items[i].expire;
       // itemsExpireObject.key = key;
       // itemsExpireObject.index = index;
+      const itemsUpdateObject =document.getElementsByName('items-update')[index];
+      itemsUpdateObject.key =_items[i].k;
       const itemsDeleteObject = document.getElementsByName('items-delete')[index];
-      itemsDeleteObject.key = key;
+      itemsDeleteObject.key = _items[i].k;
       // const itemsCheckboxObject = document.getElementsByName('items-checkbox')[index];
       // itemsCheckboxObject.key = key;
       index++;
     }
-    console.log('Readed', items);
+    console.log('Readed', _items);
   });
 };
-
-
 
 const itemsDelete = function(key) {
   const url = 'https://red-javascript-yurim-default-rtdb.firebaseio.com/items/'+ key + '.json';
   axios.delete(url).then(itemsRead);
 };
 
-const itemUpdate = function(key) {
+const itemsUpdate = function(key) {
   const url = 'https://red-javascript-yurim-default-rtdb.firebaseio.com/items/' + key + '.json';
   const name = document.getElementsByName('item-name')[0].value;
   const enter = document.getElementsByName('item-enter')[0].value;

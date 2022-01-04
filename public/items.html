@@ -10,6 +10,7 @@
   <link href="./index.css" rel="stylesheet">
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://momentjs.com/downloads/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
   <script defer src="./js/items.js"></script>
 </head>
 <body>
@@ -55,22 +56,22 @@
                 <th>
                   <span class="title-names">
                     Name
-                    <span class="material-icons active">arrow_drop_up</span>
-                    <span class="material-icons">arrow_drop_down</span>
+                    <span class="material-icons orderBy" id="name-asc"><a href="?orderByName=name&orderByType=asc">arrow_drop_up</a></span>
+                    <span class="material-icons orderBy" id="name-desc"><a href="?orderByType=name&orderByType=desc">arrow_drop_down</a></span>
                   </span>
                 </th>
                 <th>
                   <span class="title-names">
                     Enter
-                    <span class="material-icons">arrow_drop_up</span>
-                    <span class="material-icons">arrow_drop_down</span>
+                    <span class="material-icons orderBy" id="enter-asc"><a href="?orderByName=enter&orderByType=asc">arrow_drop_up</a></span>
+                    <span class="material-icons orderBy" id="enter-desc"><a href="?orderByType=enter&orderByType=desc">arrow_drop_down</a></span>
                   </span>
                 </th>
                 <th>
                   <span class="title-names">
                     Expire
-                    <span class="material-icons">arrow_drop_up</span>
-                    <span class="material-icons">arrow_drop_down</span>
+                    <span class="material-icons orderBy" id="expire-asc"><a href="?orderByName=expire&orderByType=asc">arrow_drop_up</a></span>
+                    <span class="material-icons orderBy" id="expire-desc"><a href="?orderByType=expire&orderByType=desc">arrow_drop_down</a></span>
                   </span>
                 </th>
                 <th>Edit</th>
@@ -126,7 +127,7 @@
         </table>
         <div class="modal-footer">
           <button class="button-close" onclick="modalToggle(); return false;"><span class="material-icons">close</span></button>
-          <button class="button-update" name="item-update" onclick="itemUpdate(key);"return false;"><span class="material-icons">edit_note</span></button>
+          <button class="button-update" name="item-update" onclick="itemsUpdate(key);return false;"><span class="material-icons">edit_note</span></button>
         </div>
       </form>
     </div>
