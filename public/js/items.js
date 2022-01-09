@@ -25,24 +25,30 @@ const itemsCreate = function(form) {
 const itemsRead = function() {
   axios.get('https://red-javascript-yurim-default-rtdb.firebaseio.com/items.json').then(function(response) {
     items = response.data;
-    const tagDivParent = document.getElementById('tag-tbody-parent');
-    tagDivParent.innerHTML = '';
+    const tagTbodyParent = document.getElementById('tag-tbody-parent');
+    tagTbodyParent.innerHTML = '';
     const tagTrChild = document.getElementById('tag-tr-child');
     for (let key in items) {
-      item[key].k =key
+      items[key].k =key
     }
     let _items = _.orderBy(items, orderByName, orderByType)
     let index = 0;
-    for(let i in _items) {
-      if(items[key].name.indexOf(q)< 0) continue;
+    let count = 0;
+    for (let i in _items) {
+      if (moment().format('YYYY-MM-DD') > _items[i].expire) {
+        count++;
+      }
+      if(_items[i].name.indexOf(q)< 0) continue;
       const newDivChild = tagTrChild.cloneNode(true);
       tagTbodyParent.appendChild(newDivChild);
+      // const itemsIndexObject = document.getElementsByName('items-index')[index];
+      // itemsIndexObject.innerHTML = index + 1;
       const itemsNameObject = document.getElementsByName('items-name')[index];
       itemsNameObject.innerHTML = _items[i].name;
       const itemsEnterObject = document.getElementsByName('items-enter')[index];
-      itemsEnterObject.innerHTML = items[i].enter;
+      itemsEnterObject.innerHTML = _items[i].enter;
       const itemsExpireObject = document.getElementsByName('items-expire')[index];
-      itemsExpireObject.innerHTML = items[i].expire;
+      itemsExpireObject.innerHTML = _items[i].expire;
       // itemsExpireObject.key = key;
       // itemsExpireObject.index = index;
       const itemsUpdateObject =document.getElementsByName('items-update')[index];
@@ -84,7 +90,7 @@ const itemsUpdateModal = function(key) {
   itemEnterObject.value = items[key].enter;
   const itemExpireObject = document.getElementsByName('item-expire')[0];
   itemExpireObject.value = items[key].expire; 
-  const itemNameObject = document.getElementsByName('item-update')[0];
+  const itemUpdateObject = document.getElementsByName('item-update')[0];
   itemUpdateObject.key = key;
     
 };

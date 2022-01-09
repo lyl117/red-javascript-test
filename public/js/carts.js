@@ -35,8 +35,8 @@ const cartsCreate = function(form) {
   const cartNameObject = form['cart-name'];
   const cart = {
     name: cartNameObject.value,
-    enter: moment().fomat('YYYY-MM-DD'),
-    expire: moment().add(3,'day').fomat('YYYY-MM-DD')
+    enter: moment().format('YYYY-MM-DD'),
+    expire: moment().add(3,'day').format('YYYY-MM-DD')
   };
   axios.post('https://red-javascript-yurim-default-rtdb.firebaseio.com/carts.json', cart).then(function() {
     cartNameObject.value = '';
@@ -60,17 +60,16 @@ const cartsRead = function() {
       console.log(result);
       carts = result[0];
       const items = result[1];
-      const tagDivParent = document.getElementById('tag-tbody-parent');
-    tagDivParent.innerHTML = '';
-    const tagDivChild = document.getElementById('tag-tr-child');
+      const tagTbodyParent = document.getElementById('tag-tbody-parent');
+    tagTbodyParent.innerHTML = '';
+    const tagTrChild = document.getElementById('tag-tr-child');
     for (let key in carts) {
       carts[key].k = key
     }
-  
     let _carts = _.orderBy(carts, orderByName, orderByType)
     for (let index in _carts){
-      const newDivChild = tagDivChild.cloneNode(true);
-      tagDivParent.appendChild(newDivChild);
+      const newDivChild = tagTrChild.cloneNode(true);
+      tagTbodyParent.appendChild(newDivChild);
       const cartsNameObject = document.getElementsByName('carts-name')[index];
       cartsNameObject.innerHTML = _carts[index].name;
       const cartsEnterObject = document.getElementsByName('carts-enter')[index];
@@ -83,8 +82,7 @@ const cartsRead = function() {
       cartsDeleteObject.key = _carts[index].k;
       const cartsCheckboxObject = document.getElementsByName('carts-checkbox')[index];
       cartsCheckboxObject.key = _carts[index].k;
-      cartsCheckboxObject.checked = items[_carts[index].k] ? true : false;
-      
+      cartsCheckboxObject.checked = items[_carts[index].k] ? true : false; 
     }
       console.log('Readed', _carts);
     }).catch(function(error) {
@@ -122,5 +120,5 @@ const itemsChange = function(event) {
   }
 }
 
-cartsRead();
+// cartsRead();
 
