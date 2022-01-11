@@ -24,6 +24,11 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     menuCarts.style.display='block';
     const menuItems = document.getElementsByName('menu-items')[0];
     menuItems.style.display='block';
+    if(window.location.pathname === '/carts.html'){
+      cartsRead();
+    } else if (window.location.pathname === '/items.html') {
+      itemsRead()
+;    }
   } else {
     console.log('로그아웃')
     // TODO:
@@ -40,6 +45,9 @@ firebase.auth().onAuthStateChanged(function(firebaseUser) {
     menuCarts.style.display='none';
     const menuItems = document.getElementsByName('menu-items')[0];
     menuItems.style.display='none'; 
+    if(window.location.pathname === '/carts.html'|| window.location.pathname === 'items.html'){
+      window.location.href = './index.html';
+    }
   }
 });
 
