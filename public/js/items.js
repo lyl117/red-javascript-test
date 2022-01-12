@@ -59,6 +59,8 @@ const itemsRead = function() {
       // itemsCheckboxObject.key = key;
       index++;
     }
+    const menuItemsCounter = document.getElementsByName('menu-items-counter');
+    menuItemsCounter.innerHTML =count;
     console.log('Readed', _items);
   });
 };
